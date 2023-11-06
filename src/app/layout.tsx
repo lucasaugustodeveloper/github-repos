@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Header from '@/components/header'
 
 import '@/assets/styles/globals.css'
 
@@ -26,8 +25,6 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/assets/icons/favicon.svg" />
       </head>
       <body className={inter.className}>
-        <Header />
-
         {children}
       </body>
     </html>
