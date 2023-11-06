@@ -1,14 +1,11 @@
-import type { Metadata } from 'next'
+'use client'
 import { Inter } from 'next/font/google'
+import { Provider } from 'react-redux'
+import store from '@/store'
 
 import '@/assets/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Github Repo',
-  description: 'App for visualize repos of user',
-}
 
 export default function RootLayout({
   children,
@@ -25,7 +22,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/assets/icons/favicon.svg" />
       </head>
       <body className={inter.className}>
-        {children}
+        <Provider store={store}>
+          {children}
+        </Provider>
       </body>
     </html>
   )

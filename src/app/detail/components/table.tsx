@@ -1,9 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import TableBody from './tableBody'
 import TableHead from './tableHead'
-
-import { repos } from '@/helpers/mocks'
 
 const tableHead = [
   {
@@ -44,13 +43,15 @@ const tableHead = [
 ]
 
 export default function Table() {
+  const repos = useSelector(({ repos }) => repos)
+
   const [tableData, setTableData] = useState<{
-    id: number
+    node_id: string
     name: string
     private: boolean
     stargazers_count: number
     forks_count: number
-  }[]>(repos)
+  }[]>([])
 
   const handleSorting = (sortField: string | undefined, sortOrder: string) => {
     if (sortField) {
@@ -71,6 +72,13 @@ export default function Table() {
     }
   }
 
+  useEffect(() => {
+    console.log('table', repos)
+    if (repos.length) {
+      setTableData(repos)
+    }
+  }, [repos])
+
   return (
     <div
       className="relative w-full overflow-x-auto shadow-md sm:rounded-lg md:w-4/5"
@@ -78,7 +86,7 @@ export default function Table() {
       <table className="w-full text-sm text-left text-gray-400">
         <TableHead columns={tableHead} handleSorting={handleSorting} />
 
-        <TableBody columns={tableHead} repos={tableData} />
+        <TableBody repos={tableData} />
       </table>
     </div>
   )

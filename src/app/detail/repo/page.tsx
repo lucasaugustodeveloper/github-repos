@@ -1,6 +1,15 @@
+'use client'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+
 import { repo, languages } from '@/helpers/mocks'
 
 export default function DetailRepo() {
+  const repoState = useSelector(({ repo }) => repo)
+
+  useEffect(() => {
+  }, [repoState])
+
   return (
     <div className='w-full p-5 md:w-1/2 md:rounded-md bg-gray-300'>
       <p className='font-bold text-xl'>

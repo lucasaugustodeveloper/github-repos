@@ -1,15 +1,21 @@
 'use client'
+import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { headerValidation } from '@/helpers/validations/header'
+import { api } from '@/services/api'
+import { add } from '@/store/reducers/user'
 
 const Header = () => {
+  const dispatch = useDispatch()
+
   const { handleChange, handleSubmit, values, errors } = useFormik({
     initialValues: {
       username: '',
     },
     validationSchema: headerValidation,
     onSubmit: values => {
-      console.log('values', values)
+      api.get(`users/${values.username}`)
+        .then(({ data }) => dispatch(add(data)))
     }
   })
 
