@@ -1,7 +1,9 @@
+import Profile from '@/components/cards/profile'
+
 export default function Home() {
   return (
-    <main>
-      <h1 className="font-bold text-5xl text-red-500">Hello World!!!</h1>
+    <main className="flex md:justify-center mt-5 p-2">
+      <Profile />
     </main>
   )
 }
