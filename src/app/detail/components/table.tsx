@@ -54,7 +54,7 @@ export default function Table() {
     full_name: string
   }[]>([])
 
-  const handleSorting = (sortField: string | null, sortOrder: string) => {
+  const handleSorting = (sortField: string | undefined, sortOrder: string) => {
     if (sortField) {
       const sorted = [...repos].sort((a, b) => {
         if (a[sortField]  === null) return 1
