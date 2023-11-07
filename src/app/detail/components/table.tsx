@@ -51,6 +51,7 @@ export default function Table() {
     private: boolean
     stargazers_count: number
     forks_count: number
+    full_name: string
   }[]>([])
 
   const handleSorting = (sortField: string | undefined, sortOrder: string) => {
