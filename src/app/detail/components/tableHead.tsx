@@ -10,14 +10,14 @@ type TableHead = {
     accessor?: string
     sortable?: boolean
   }>
-  handleSorting: (accessor: string | undefined, sortOrder: string) => void
+  handleSorting: (accessor: string, sortOrder: string) => void
 }
 
 export default function TableHead({ columns, handleSorting }: TableHead) {
   const [sortField, setSortField] = useState<string | undefined>("")
   const [order, setOrder] = useState<"asc" | "desc">("asc")
 
-  const handleSortingChange = (accessor: string | undefined) => {
+  const handleSortingChange = (accessor: string) => {
     const sortOrder =
       accessor === sortField && order === "asc" ? "desc" : "asc"
 
@@ -35,7 +35,7 @@ export default function TableHead({ columns, handleSorting }: TableHead) {
             scope="col"
             className={`px-6 py-3 ${sortable ? 'cursor-pointer' : null}`}
             key={id}
-            onClick={sortable ? () => handleSortingChange(accessor) : undefined}
+            onClick={sortable ? () => handleSortingChange(accessor ?? '') : undefined}
           >
             <div className="flex items-center">
               {label}

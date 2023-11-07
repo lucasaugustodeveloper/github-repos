@@ -22,21 +22,21 @@ export default function DetailRepo() {
         ${(!repo && !languages) ? 'flex justify-center' : ''}`
       }
     >
-      {(repo && languages) ? (
+      {(repo.name && languages.length) ? (
         <>
           <p className='font-bold text-xl'>
             Name:&nbsp;
-            <span className='font-normal'>{repo.name}</span>
+            <span className='font-normal'>{repo.name ?? ''}</span>
           </p>
 
           <p className='font-bold text-xl mt-4'>
             Description:&nbsp;
-            <span className='font-normal block'>{repo.description}</span>
+            <span className='font-normal block'>{repo.description ?? ''}</span>
           </p>
 
           <p className='font-bold text-xl mt-4'>
             Stars:&nbsp;
-            <span className='font-normal'>{repo.stargazers_count}</span>
+            <span className='font-normal'>{repo.stargazers_count ?? ''}</span>
           </p>
 
           <div className='mt-4'>
@@ -58,7 +58,7 @@ export default function DetailRepo() {
 
           <a
             className='text-xl mt-4 block underline text-blue-500'
-            href={repo.html_url}
+            href={repo.html_url ?? '#'}
             target='_blank'
           >
             Page Github

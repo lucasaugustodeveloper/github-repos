@@ -32,11 +32,11 @@ export default function TableBody({ repos }: TableBody) {
             scope="row"
             className="px-6 py-4 font-medium whitespace-nowrap text-white"
           >
-            {repo.name}
+            {repo.name ?? ''}
           </th>
           <td className="px-6 py-4">{repo.private ? 'true' : 'false'}</td>
-          <td className="px-6 py-4">{repo.stargazers_count}</td>
-          <td className="px-6 py-4">{repo.forks_count}</td>
+          <td className="px-6 py-4">{repo.stargazers_count ?? 0}</td>
+          <td className="px-6 py-4">{repo.forks_count ?? 0}</td>
           <td className="px-6 py-4 text-right">
             <Link
               href={`detail/repo`}

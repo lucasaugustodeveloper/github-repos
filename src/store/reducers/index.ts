@@ -2,8 +2,10 @@ import userSlice from './user'
 import reposSlice from './repos'
 import repoSlice from './repo'
 
-export default {
+const reducers = {
   user: userSlice,
   repos: reposSlice,
   repo: repoSlice,
 }
+
+export default reducers

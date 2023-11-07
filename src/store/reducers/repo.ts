@@ -2,22 +2,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type RepoType = {
   name: string
-  description: boolean
+  description: string
   stars: number
-  languages: string[]
   link: string
 }
 
 export type StateType = {
   name: string
-  repo: RepoType | null
-  languages: Array<string> | null
+  repo: RepoType
+  languages: Array<string>
 }
 
 const initialState: StateType = {
   name: '',
-  repo: null,
-  languages: null
+  repo: {
+    name: '',
+    description: '',
+    stars: 0,
+    link: '',
+  },
+  languages: []
 }
 
 export const repoSlice = createSlice({
