@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export type RepoTypes = {
+export type RepoType = {
   name: string
   description: boolean
   stars: number
@@ -8,22 +8,51 @@ export type RepoTypes = {
   link: string
 }
 
-const initialState: RepoTypes[] = []
+export type StateType = {
+  name: string
+  repo: RepoType | null
+  languages: Array<string> | null
+}
 
-export const userSlice = createSlice({
+const initialState: StateType = {
+  name: '',
+  repo: null,
+  languages: null
+}
+
+export const repoSlice = createSlice({
   name: 'repo',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<RepoTypes[]>) => {
+    add: (state, action: PayloadAction<RepoType>) => {
       const { payload } = action
 
-      return (state = [
-        ...payload,
-      ])
+      return (state = {
+        ...state,
+        repo: {
+          ...payload,
+        }
+      })
+    },
+    getNameRepo: (state, action: PayloadAction<string>) => {
+      const { payload } = action
+
+      return (state = {
+        ...state,
+        name: payload
+      })
+    },
+    getLanguages: (state, action: PayloadAction<Array<string>>) => {
+      const { payload } = action
+
+      return (state = {
+        ...state,
+        languages: [ ...payload ]
+      })
     },
   }
 })
 
-export const { add } = userSlice.actions
+export const { add, getNameRepo, getLanguages } = repoSlice.actions
 
-export default userSlice.reducer
+export default repoSlice.reducer

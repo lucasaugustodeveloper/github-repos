@@ -73,7 +73,6 @@ export default function Table() {
   }
 
   useEffect(() => {
-    console.log('table', repos)
     if (repos.length) {
       setTableData(repos)
     }

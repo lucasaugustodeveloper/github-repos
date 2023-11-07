@@ -1,9 +1,7 @@
 'use client'
 import { useDispatch } from 'react-redux'
 import Link from "next/link"
-import { add } from '@/store/reducers/repo'
-
-import { api } from "@/services/api"
+import { getNameRepo } from '@/store/reducers/repo'
 
 export type TableBody = {
   repos: Array<{
@@ -20,8 +18,7 @@ export default function TableBody({ repos }: TableBody) {
   const dispatch = useDispatch()
 
   const getRepo = (fullName: string) => {
-    api.get(`repos/${fullName}`)
-      .then(({ data }) => dispatch(add(data)))
+    dispatch(getNameRepo(fullName))
   }
 
   return (
